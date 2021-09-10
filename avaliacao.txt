@@ -1,0 +1,19 @@
+AVALIAÇÃO
+----------
+
+
+T-01 ( 2.0 pontos )
+
+Nota.... 0.5 pts
+
+Os casos de uso deveriam ser numerados ( exemplo UC01 - compra do bilhete )
+
+O descritivo do caso de uso não tem, pelo menos, os atores e o fluxo básico.
+
+Não foi entregue o Diagrama de Casos de Uso.
+
+Foi entregue somente um diagrama de sequencia.
+
+
+
+
