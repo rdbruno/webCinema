@@ -1,0 +1,46 @@
+<div class="card" style="width: 100%; border-style: none;">
+    <div class="card-body">
+      <h5 class="card-title">Salas</h5>
+      <p class="card-text">Todos os filmes em cartazes para deixar sua tarde nerd a melhor</p>
+    </div>
+</div>
+
+<div class="row card-group">
+  <div *ngFor="let sala of arraySalas" class="col-12 col-md-6 col-lg-3" style="margin-top: 5px;">
+    <div class="card">
+      <img [src]="sala.capa" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ sala.filme }}</h5>
+        <p class="card-text">Sala: {{ sala.numero }}</p>
+        <p class="card-text">Cadeiras: {{ sala.cadeiras }}</p>
+        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal">Ingressos</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ingressosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Ingressos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Quantos ingressos deseja comprar?</p>
+        <select class="form-select" aria-label="Default select example">
+          <option selected>Selecione</option>
+          <option value="1">01</option>
+          <option value="2">02</option>
+          <option value="3">03</option>
+        </select>
+        <br>
+        <p>Total: </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary">Carrinho</button>
+      </div>
+    </div>
+  </div>
+</div>

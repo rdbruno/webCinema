@@ -1,0 +1,20 @@
+<ul class="list-group">
+    <div *ngFor="let historico of arrayHistorico">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ historico.filme }} - {{ historico.ingressos }}
+            <a class="btn btn-primary" data-bs-toggle="collapse" href="#exemploToggle" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Alterar</a>
+            <!--p>Ingressos - <span class="badge bg-primary rounded-pill">4</span> </p-->
+        </li>
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse multi-collapse" id="exemploToggle">
+                    <div class="card card-body">
+                        Some placeholder content for the first collapse component of this multi-collapse example. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ul>
+
