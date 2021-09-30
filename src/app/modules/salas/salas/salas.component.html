@@ -1,19 +1,20 @@
 <div class="card" style="width: 100%; border-style: none;">
     <div class="card-body">
-      <h5 class="card-title">Salas</h5>
-      <p class="card-text">Todos os filmes em cartazes para deixar sua tarde nerd a melhor</p>
+      <h5 class="card-title">Filmes</h5>
+      <p class="card-text">Escolha um filme e aproveite sua seção!</p>
     </div>
 </div>
 
 <div class="row card-group">
-  <div *ngFor="let sala of arraySalas" class="col-12 col-md-6 col-lg-3" style="margin-top: 5px;">
+  <div *ngFor="let filme of listaFilmes" class="col-12 col-md-6 col-lg-3" style="margin-top: 5px;">
     <div class="card">
-      <img [src]="sala.capa" class="card-img-top">
+      <img [src]="filme.UrlCartaz" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">{{ sala.filme }}</h5>
-        <p class="card-text">Sala: {{ sala.numero }}</p>
-        <p class="card-text">Cadeiras: {{ sala.cadeiras }}</p>
-        <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal">Ingressos</a>
+        <h5 class="card-title">{{ filme.NomeFilme }}</h5>
+        <p class="card-text">{{ filme.Sala1 }} e {{ filme.Sala2 }}</p>
+        <p class="card-text">Preço: {{ filme.PrecoIngresso | currency: 'BRL' : 'symbol' }}</p>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal" (click)="dialogIngresso(filme.IdFilme)">Ingressos</button>
+        <!--a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal">Ingressos</a-->
       </div>
     </div>
   </div>
@@ -27,15 +28,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Quantos ingressos deseja comprar?</p>
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Selecione</option>
-          <option value="1">01</option>
-          <option value="2">02</option>
-          <option value="3">03</option>
-        </select>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+          <label class="form-check-label" for="flexRadioDefault1">
+            {{ sala1 }} | {{ horario1 | date: 'short' }}
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            {{ sala2 }} | {{ horario2 | date: 'short' }}
+          </label>
+        </div>
         <br>
-        <p>Total: </p>
+
+        <p>Quantos ingressos deseja comprar?</p>
+        <input min=0 id="total" type="number" placeholder="0" (change)="calcularIngresso($event)">
+
+        <br><br>
+        <p>Total: {{ totalIngresso | currency: 'BRL' : 'symbol' }}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>

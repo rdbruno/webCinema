@@ -14,6 +14,7 @@ export class MenuComponent implements OnInit {
   }
 
   public logOut(): void {
+    localStorage.clear();
     this.router.navigate(['acesso']);
   }
 

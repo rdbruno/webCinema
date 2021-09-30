@@ -8,17 +8,17 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
 
-  apiURL = 'http://localhost:8080/usuarios';
+  apiURL = 'http://localhost:5000';
 
   constructor(private router: Router, private httpClient: HttpClient) {
   }
 
   public signUpUser(usuario: Usuario): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/`, usuario);
+    return this.httpClient.post(`${this.apiURL}/api/Auth`, usuario);
   }
 
-  public login(email: string, cnpj: string): Observable<any> {
-    return this.httpClient.get(`${this.apiURL}/login/${email}/${cnpj}`);
+  public login(usuario: Usuario): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/api/Auth/GetLogin`, usuario);
   }
 
   public getUserWithID(id: string): Observable<any> {
