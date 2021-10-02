@@ -1,1 +1,56 @@
-<p>carrinho works!</p>
+<div class="accordion" id="accordionExample">
+    <div *ngFor="let historico of arrayHistorico; let i=index" class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{i}}" aria-expanded="true" attr.aria-controls="#collapse_{{i}}">
+          {{ historico.filme }}
+        </button>
+      </h2>
+      <div id="collapse_{{i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <p>Ingressos: {{historico.ingressos}}</p>
+          <p>Sessão: {{ historico.sessao }}</p>
+          <button class="btn btn-danger">Remover</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="card text-center" style="margin-top: 10px;">
+    <div class="card-header">
+      Dados da Compra
+    </div>
+    <div class="card-body">
+      <p class="card-text">Informe os dados necessários para a compra do seu Ingresso(s).</p>
+
+      <div style="margin-top: 10px;">
+        <form [formGroup]="formularioCompra">
+            <div class="row g-3">
+                <div *ngIf="!formularioCompra.get('numeroCartao')?.valid" class="col-sm-7">
+                    <input type="text" class="form-control is-invalid" formControlName="numeroCartao" placeholder="Número do Cartão" aria-label="City">
+                </div>
+                <div *ngIf="formularioCompra.get('numeroCartao')?.valid" class="col-sm-7">
+                    <input type="text" class="form-control is-valid" formControlName="numeroCartao" placeholder="Número do Cartão" aria-label="City">
+                </div>
+
+                <div *ngIf="!formularioCompra.get('cartaoVencimento')?.valid" class="col-sm">
+                    <input type="date" class="form-control is-invalid" formControlName="cartaoVencimento" placeholder="Data de Vencimento" aria-label="State">
+                </div>
+                <div *ngIf="formularioCompra.get('cartaoVencimento')?.valid" class="col-sm">
+                    <input type="date" class="form-control is-valid" formControlName="cartaoVencimento" placeholder="Data de Vencimento" aria-label="State">
+                </div>
+
+                <div *ngIf="!formularioCompra.get('codigoCartao')?.valid" class="col-sm">
+                    <input type="text" class="form-control is-invalid" formControlName="codigoCartao" placeholder="Código Segurança" aria-label="Zip">
+                </div>
+                <div *ngIf="formularioCompra.get('codigoCartao')?.valid" class="col-sm">
+                    <input type="text" class="form-control is-valid" formControlName="codigoCartao" placeholder="Código Segurança" aria-label="Zip">
+                </div>
+            </div>
+        </form>
+        <div style="margin-top: 15px;">
+            <button class="btn btn-primary" [disabled]="!formularioCompra.valid" (click)="realizarCompra()">Comprar</button>
+        </div>
+      </div>
+    </div>
+</div>
+

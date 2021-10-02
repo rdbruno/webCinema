@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthService } from '../../../shared/services/auth.service';
 import { Validacoes } from '../../../shared/utils/validacoes';
@@ -14,7 +14,7 @@ import { Usuario } from '../../../shared/models/usuario.model';
 export class CadastroComponent implements OnInit {
 
   public cadastro = false;
-
+  
   public formularioCadastro = this.formBuilder.group({
     nome: [null, [Validators.required, Validators.minLength(5)]],
     documento: ['', [Validators.required, Validacoes.validaCPF]],

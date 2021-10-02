@@ -12,21 +12,31 @@
                         <div class="col-lg-10 col-xl-7 mx-auto">
                             <h3 class="display-4">Criar Conta</h3>
                             <p class="text-muted mb-4">WebCinema</p>
-                            <form [formGroup]="formularioCadastro">
+                            <form [formGroup]="formularioCadastro" novalidate>
                                 <div class="form-group mb-3">
-                                    <input name="nome" formControlName="nome" type="text" placeholder="Nome" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input name="nome" formControlName="nome" type="text" placeholder="Nome" autofocus="" autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <small *ngIf="formularioCadastro.get('nome')?.valid && formularioCadastro.get('nome')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioCadastro.get('nome')?.valid && formularioCadastro.get('nome')?.touched" class="form-text text-danger">Nome inválido</small>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputCPF" formControlName="documento" type="text" placeholder="CPF" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputCPF" formControlName="documento" type="text" placeholder="CPF" autofocus="" autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <small *ngIf="formularioCadastro.get('documento')?.valid && formularioCadastro.get('documento')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioCadastro.get('documento')?.valid && formularioCadastro.get('documento')?.touched" class="form-text text-danger">Documento inválido</small>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" formControlName="email" type="email" placeholder="Email" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" formControlName="email" type="email" placeholder="E-mail" autofocus="" autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <small *ngIf="formularioCadastro.get('email')?.valid && formularioCadastro.get('email')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioCadastro.get('email')?.valid && formularioCadastro.get('email')?.touched" class="form-text text-danger">E-mail inválido</small>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <input id="inputTelefone" formControlName="telefone" type="text" placeholder="Telefone" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputTelefone" formControlName="telefone" type="text" placeholder="Telefone" autofocus="" autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <small *ngIf="formularioCadastro.get('telefone')?.valid && formularioCadastro.get('telefone')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioCadastro.get('telefone')?.valid && formularioCadastro.get('telefone')?.touched" class="form-text text-danger">Telefone inválido</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input id="inputPassword" formControlName="senha" type="password" placeholder="Senha" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <small *ngIf="formularioCadastro.get('senha')?.valid && formularioCadastro.get('senha')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioCadastro.get('senha')?.valid && formularioCadastro.get('senha')?.touched" class="form-text text-danger">Senha inválida</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input id="inputConfirmPassword" formControlName="confirmarSenha" type="password" placeholder="Confirmar Senha" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">

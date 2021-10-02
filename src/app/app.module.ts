@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { AuthService } from './shared/services/auth.service';
 import { MovieService } from './shared/services/movie.service';
+import { CarrinhoService } from './shared/services/carrinho.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MovieService } from './shared/services/movie.service';
   providers: [
     AuthService,
     MovieService,
+    CarrinhoService,
     { provide: LOCALE_ID, useValue: 'pt-PT' },
     DatePipe
   ],

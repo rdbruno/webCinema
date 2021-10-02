@@ -14,10 +14,16 @@
                             <p class="text-muted mb-4">WebCinema</p>
                             <form [formGroup]="formularioLogin">
                                 <div class="form-group mb-3">
-                                    <input id="inputEmail" formControlName="email" type="email" placeholder="Email" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4">
+                                    <input id="inputEmail" formControlName="email" type="email" placeholder="E-mail" required="" 
+                                           autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4" 
+                                    >
+                                    <small *ngIf="formularioLogin.get('email')?.valid && formularioLogin.get('email')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioLogin.get('email')?.valid && formularioLogin.get('email')?.touched" class="form-text text-danger">E-mail inválido</small>
                                 </div>
                                 <div class="form-group mb-3">
                                     <input id="inputPassword" formControlName="senha" type="password" placeholder="Senha" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <small *ngIf="formularioLogin.get('senha')?.valid && formularioLogin.get('senha')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioLogin.get('senha')?.valid && formularioLogin.get('senha')?.touched" class="form-text text-danger">Senha inválida</small>
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block mb-2 rounded-pill shadow-sm" (click)="signIn()">Entrar</button>
                                 <p>Não possui uma conta? <a href="acesso/signup">Registre-se</a> </p>

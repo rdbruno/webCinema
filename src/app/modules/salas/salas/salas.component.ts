@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Filme } from 'src/app/shared/models/filme.model';
 import { MovieService } from 'src/app/shared/services/movie.service';
+import { CarrinhoService } from 'src/app/shared/services/carrinho.service';
 
 @Component({
   selector: 'app-salas',
@@ -19,7 +20,7 @@ export class SalasComponent implements OnInit {
   public precoIngresso = 0;
   public totalIngresso = 0;
 
-  constructor( private movieService: MovieService ) { }
+  constructor( private movieService: MovieService, private carrinhoService: CarrinhoService ) { }
 
   ngOnInit(): void {
     this.carregarFilmes();
@@ -29,6 +30,7 @@ export class SalasComponent implements OnInit {
     this.movieService.getAllMovies()
       .subscribe(res => {
         this.listaFilmes = res;
+        console.log(this.listaFilmes);
       }, 
       erro => {
         console.log(erro);
@@ -51,4 +53,7 @@ export class SalasComponent implements OnInit {
     this.totalIngresso = this.precoIngresso * event.target.value;
   }
 
+  public adicionarCarrinho(): void {
+    console.log('Adicionado ao Carrinho');
+  }
 }
