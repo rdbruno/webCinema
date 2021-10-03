@@ -1,14 +1,14 @@
 <div class="accordion" id="accordionExample">
-    <div *ngFor="let historico of arrayHistorico; let i=index" class="accordion-item">
+    <div *ngFor="let item of itensCarrinho; let i=index" class="accordion-item">
       <h2 class="accordion-header" id="headingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{i}}" aria-expanded="true" attr.aria-controls="#collapse_{{i}}">
-          {{ historico.filme }}
+          {{ item.NomeFilme }}
         </button>
       </h2>
       <div id="collapse_{{i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
         <div class="accordion-body">
-          <p>Ingressos: {{historico.ingressos}}</p>
-          <p>Sessão: {{ historico.sessao }}</p>
+          <p>Ingressos: {{ item.Lugar }}</p>
+          <p>Sessão: {{ item.HorarioSecao | date: 'short' }}</p>
           <button class="btn btn-danger">Remover</button>
         </div>
       </div>

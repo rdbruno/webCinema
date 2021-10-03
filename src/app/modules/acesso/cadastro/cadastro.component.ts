@@ -44,7 +44,6 @@ export class CadastroComponent implements OnInit {
 
     this.authService.signUpUser(usuario)
       .subscribe(res => {
-        console.log(res);
         this.cadastro = true;
       },
       erro => {

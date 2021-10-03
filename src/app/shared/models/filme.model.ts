@@ -6,6 +6,8 @@ export class Filme {
         public PrecoIngresso: number,
         public Sala1: string,
         public Sala2: string,
+        public IdSala1: number,
+        public IdSala2: number,
         public HorarioSecao1: string,
         public HorarioSecao2: string
     ) {}
