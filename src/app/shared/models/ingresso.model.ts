@@ -1,11 +1,11 @@
 export class Ingresso {
     constructor (
-        public idIngresso: number,
-        public idSala: number,
-        public idFilme: number,
-        public idUsuario: number,
-        public lugar: string,
-        public dataInserido: string,
-        public ativo: number
+        public IdIngressoUsuario: number,
+        public IdUsuario: number,
+        public IdSala: number,
+        public Lugar: number,
+        public IdPagamentoUsuario: number,
+        public ValorTotal: number,
+        public RgCpf: string
     ) {}
 }

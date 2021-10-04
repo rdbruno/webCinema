@@ -20,8 +20,4 @@ export class AuthService {
   public login(usuario: Usuario): Observable<any> {
     return this.httpClient.post(`${this.apiURL}/api/Auth/GetLogin`, usuario);
   }
-
-  public getUserWithID(id: string): Observable<any> {
-    return this.httpClient.get(`${this.apiURL}/${id}`);
-  }
 }

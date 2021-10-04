@@ -29,13 +29,13 @@
       </div>
       <div class="modal-body">
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="radioSala" id="radioSala1">
+          <input class="form-check-input" type="radio" name="radioSala" id="radioSala1" (click)="atualizaLugares()">
           <label class="form-check-label" for="radioSala1">
             {{ sala1 }} | {{ horario1 | date: 'short' }}
           </label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="radioSala" id="radioSala2">
+          <input class="form-check-input" type="radio" name="radioSala" id="radioSala2" (click)="atualizaLugares()">
           <label class="form-check-label" for="radioSala2">
             {{ sala2 }} | {{ horario2 | date: 'short' }}
           </label>
@@ -43,12 +43,13 @@
         <br>
 
         <p>Quantos ingressos deseja comprar?</p>
-        <input min=0 id="total" type="number" placeholder="0" (change)="calcularIngresso($event)">
+        <input min=0 attr.max="{{lugaresDisponiveis}}" id="total" type="number" placeholder="0" (change)="calcularIngresso($event)">
 
         <br><br>
         <p>Total: {{ totalIngresso | currency: 'BRL' : 'symbol' }}</p>
       </div>
       <div class="modal-footer">
+        <small *ngIf="adicionado" class="form-text text-success">Adicionado com Sucesso!</small>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="adicionarCarrinho()">Carrinho</button>
       </div>

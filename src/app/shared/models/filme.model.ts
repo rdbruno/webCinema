@@ -9,6 +9,8 @@ export class Filme {
         public IdSala1: number,
         public IdSala2: number,
         public HorarioSecao1: string,
-        public HorarioSecao2: string
+        public HorarioSecao2: string,
+        public QuantidadeLugares1: number,
+        public QuantidadeLugares2: number
     ) {}
 }

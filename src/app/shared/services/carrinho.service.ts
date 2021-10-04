@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { Carrinho } from '../models/carrinho.model';
+import { Ingresso } from '../models/ingresso.model';
 import { ItemCarrinho } from '../models/itemCarrinho.model';
 
 @Injectable()
@@ -22,6 +23,22 @@ export class CarrinhoService {
 
   public itemShoppingCart(carrinho: ItemCarrinho): Observable<any> {
     return this.httpClient.post(`${this.apiURL}/api/ShoppingCart`, carrinho);
+  }
+
+  public removerItemCarrinho(idCarrinho: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiURL}/api/ShoppingCart?IdCarrinho=${idCarrinho}`);
+  }
+
+  public proximoId(): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/api/Ticket/ProximoId`, 1);
+  }
+
+  public proximoIdPagamento(): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/api/Payment/ProximoIdPagamento`, 1);
+  }
+  
+  public cadastrarIngresso(ingresso: Ingresso): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/api/Ticket/CadastraIngresso`, ingresso);
   }
 
 }

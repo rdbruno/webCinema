@@ -1,56 +1,75 @@
-<div class="accordion" id="accordionExample">
-    <div *ngFor="let item of itensCarrinho; let i=index" class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{i}}" aria-expanded="true" attr.aria-controls="#collapse_{{i}}">
-          {{ item.NomeFilme }}
-        </button>
-      </h2>
-      <div id="collapse_{{i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <p>Ingressos: {{ item.Lugar }}</p>
-          <p>Sessão: {{ item.HorarioSecao | date: 'short' }}</p>
-          <button class="btn btn-danger">Remover</button>
+<div *ngIf="!compraFeita">
+  <div class="accordion" id="accordionExample">
+      <div *ngFor="let item of itensCarrinho; let i=index" class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" attr.data-bs-target="#collapse_{{i}}" aria-expanded="true" attr.aria-controls="#collapse_{{i}}">
+            {{ item.NomeFilme }}
+          </button>
+        </h2>
+        <div id="collapse_{{i}}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div class="accordion-body">
+            <p>Ingressos: {{ item.Lugar }}</p>
+            <p>Sessão: {{ item.HorarioSecao | date: 'short' }}</p>
+            <p>Valor: {{ item.ValorTotal | currency: 'BRL' : 'symbol' }}</p>
+            <button class="btn btn-danger" (click)="removerCarrinho(item.IdCarrinho)">Remover</button>
+          </div>
         </div>
       </div>
-    </div>
-</div>
+  </div>
 
-<div class="card text-center" style="margin-top: 10px;">
-    <div class="card-header">
-      Dados da Compra
-    </div>
-    <div class="card-body">
-      <p class="card-text">Informe os dados necessários para a compra do seu Ingresso(s).</p>
+  <div class="card text-center" style="margin-top: 10px;">
+      <div class="card-header">
+        Dados da Compra
+      </div>
+      <div class="card-body">
+        <p class="card-text">Informe os dados necessários para a compra do seu Ingresso(s).</p>
 
-      <div style="margin-top: 10px;">
-        <form [formGroup]="formularioCompra">
-            <div class="row g-3">
-                <div *ngIf="!formularioCompra.get('numeroCartao')?.valid" class="col-sm-7">
-                    <input type="text" class="form-control is-invalid" formControlName="numeroCartao" placeholder="Número do Cartão" aria-label="City">
+        <div style="margin-top: 10px;">
+          <form [formGroup]="formularioCompra">
+              <div class="row g-3">
+                <div class="col-sm was-validated">
+                  <select class="form-select" required aria-label="select example" (change)="selectedPayment($event)">
+                    <option value="">Forma de Pagamento</option>
+                    <option value="1">Débito</option>
+                    <option value="2">Crédito</option>
+                  </select>
                 </div>
-                <div *ngIf="formularioCompra.get('numeroCartao')?.valid" class="col-sm-7">
-                    <input type="text" class="form-control is-valid" formControlName="numeroCartao" placeholder="Número do Cartão" aria-label="City">
+
+                <div *ngIf="!formularioCompra.get('numeroCartao')?.valid" class="col-sm-5">
+                  <input type="text" class="form-control is-invalid" formControlName="numeroCartao" placeholder="Número do Cartão">
+                </div>
+                <div *ngIf="formularioCompra.get('numeroCartao')?.valid" class="col-sm-5">
+                  <input type="text" class="form-control is-valid" formControlName="numeroCartao" placeholder="Número do Cartão">
                 </div>
 
                 <div *ngIf="!formularioCompra.get('cartaoVencimento')?.valid" class="col-sm">
-                    <input type="date" class="form-control is-invalid" formControlName="cartaoVencimento" placeholder="Data de Vencimento" aria-label="State">
+                  <input type="date" class="form-control is-invalid" formControlName="cartaoVencimento" placeholder="Data de Vencimento">
                 </div>
                 <div *ngIf="formularioCompra.get('cartaoVencimento')?.valid" class="col-sm">
-                    <input type="date" class="form-control is-valid" formControlName="cartaoVencimento" placeholder="Data de Vencimento" aria-label="State">
+                  <input type="date" class="form-control is-valid" formControlName="cartaoVencimento" placeholder="Data de Vencimento">
                 </div>
 
                 <div *ngIf="!formularioCompra.get('codigoCartao')?.valid" class="col-sm">
-                    <input type="text" class="form-control is-invalid" formControlName="codigoCartao" placeholder="Código Segurança" aria-label="Zip">
+                  <input type="text" class="form-control is-invalid" formControlName="codigoCartao" placeholder="Código Segurança">
                 </div>
                 <div *ngIf="formularioCompra.get('codigoCartao')?.valid" class="col-sm">
-                    <input type="text" class="form-control is-valid" formControlName="codigoCartao" placeholder="Código Segurança" aria-label="Zip">
+                  <input type="text" class="form-control is-valid" formControlName="codigoCartao" placeholder="Código Segurança">
                 </div>
-            </div>
-        </form>
-        <div style="margin-top: 15px;">
-            <button class="btn btn-primary" [disabled]="!formularioCompra.valid" (click)="realizarCompra()">Comprar</button>
+              </div>
+          </form>
+          <div style="margin-top: 15px;">
+              <button class="btn btn-primary" [disabled]="!formularioCompra.valid" (click)="realizarCompra()">Comprar</button>
+          </div>
         </div>
       </div>
-    </div>
+  </div>
 </div>
 
+<div *ngIf="compraFeita">
+  <div class="card text-center">
+    <div class="card-body">
+      <h5 class="card-title">Compra Realizada</h5>
+      <p class="card-text">Visite o menu de histórico para um detalhamento de sua compra</p>
+    </div>
+  </div>
+</div>

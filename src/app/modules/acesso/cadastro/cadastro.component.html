@@ -43,6 +43,9 @@
                                 </div>
                                 <button type="button" class="btn btn-primary btn-block mb-2 rounded-pill shadow-sm" style="margin-right: 2px;" [disabled]="!formularioCadastro.valid" (click)="signUp()">Registrar</button>
                                 <button type="button" class="btn btn-primary btn-block mb-2 rounded-pill shadow-sm" (click)="loginScreen()">Acessar</button>
+                                <div *ngIf="cadastro">
+                                    <small class="form-text text-success">Cadastro realizado com sucesso!</small>
+                                </div>
                             </form>
                         </div>
                     </div>

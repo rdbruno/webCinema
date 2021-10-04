@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
     senha: [null, Validators.required],
   });
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService) { }
+  constructor(
+    private router: Router, 
+    private formBuilder: FormBuilder, 
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +39,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         localStorage.setItem('Login', 'True');
         localStorage.setItem('UserID', res.Login[0].Id);
+        localStorage.setItem('UserDoc', res.Login[0].RgCpf);
         this.router.navigate(['home']);
       },
       erro => {

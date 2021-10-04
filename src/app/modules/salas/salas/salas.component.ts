@@ -24,6 +24,10 @@ export class SalasComponent implements OnInit {
   public precoIngresso = 0;
   public totalIngresso = 0;
   public quantidadeLugares = 0;
+  public adicionado = false;
+  public lugaresDisponiveis = 0;
+  public lugaresSala1 = 0;
+  public lugaresSala2 = 0;
 
   constructor( private movieService: MovieService, private carrinhoService: CarrinhoService ) { }
 
@@ -51,7 +55,20 @@ export class SalasComponent implements OnInit {
         this.horario1 = this.listaFilmes[i].HorarioSecao1;
         this.horario2 = this.listaFilmes[i].HorarioSecao2;
         this.precoIngresso = this.listaFilmes[i].PrecoIngresso;
+        this.lugaresSala1 = this.listaFilmes[i].QuantidadeLugares1;
+        this.lugaresSala2 = this.listaFilmes[i].QuantidadeLugares2;
       }
+    }
+  }
+
+  public atualizaLugares(): void {
+    const sala = document.querySelectorAll("input[name^='radioSala']:checked");
+    let idSala = 0;
+
+    if (sala[0].id === 'radioSala1') {
+      this.lugaresDisponiveis = this.lugaresSala1;
+    } else {
+      this.lugaresDisponiveis = this.lugaresSala2;
     }
   }
 
@@ -64,8 +81,8 @@ export class SalasComponent implements OnInit {
     let user = JSON.parse(localStorage.getItem('UserID') || '{}');
     var id = parseInt(user);
     let idSala = 0;
-
     const sala = document.querySelectorAll("input[name^='radioSala']:checked");
+
     if (sala[0].id === 'radioSala1') {
       idSala = this.idSala1;
     } else {
@@ -74,14 +91,15 @@ export class SalasComponent implements OnInit {
     
     const carrinho: ItemCarrinho = new ItemCarrinho(
       id,
-      2,
+      idSala,
       this.quantidadeLugares,
       this.totalIngresso
     );
 
     this.carrinhoService.itemShoppingCart(carrinho)
       .subscribe(res => {
-        console.log(res);
+        this.adicionado = true;
+        this.carregarFilmes();
       },
       erro => {
         console.log(erro);

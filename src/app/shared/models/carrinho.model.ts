@@ -9,6 +9,7 @@ export class Carrinho {
         public NomeSala: string,
         public HorarioSecao: string,
         public NomeFilme: string,
-        public PrecoIngresso: number
+        public PrecoIngresso: number,
+        public IdSala: number
     ) { }
 }
