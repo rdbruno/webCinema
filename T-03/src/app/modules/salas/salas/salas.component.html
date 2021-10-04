@@ -1,0 +1,58 @@
+<div class="card" style="width: 100%; border-style: none;">
+    <div class="card-body">
+      <h5 class="card-title">Filmes</h5>
+      <p class="card-text">Escolha um filme e aproveite sua seção!</p>
+    </div>
+</div>
+
+<div class="row card-group">
+  <div *ngFor="let filme of listaFilmes" class="col-12 col-md-6 col-lg-3" style="margin-top: 5px;">
+    <div class="card">
+      <img [src]="filme.UrlCartaz" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ filme.NomeFilme }}</h5>
+        <p class="card-text">{{ filme.Sala1 }} e {{ filme.Sala2 }}</p>
+        <p class="card-text">Preço: {{ filme.PrecoIngresso | currency: 'BRL' : 'symbol' }}</p>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal" (click)="dialogIngresso(filme.IdFilme)">Ingressos</button>
+        <!--a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#ingressosModal">Ingressos</a-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ingressosModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Ingressos</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioSala" id="radioSala1" (click)="atualizaLugares()">
+          <label class="form-check-label" for="radioSala1">
+            {{ sala1 }} | {{ horario1 | date: 'short' }}
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="radioSala" id="radioSala2" (click)="atualizaLugares()">
+          <label class="form-check-label" for="radioSala2">
+            {{ sala2 }} | {{ horario2 | date: 'short' }}
+          </label>
+        </div>
+        <br>
+
+        <p>Quantos ingressos deseja comprar?</p>
+        <input min=0 attr.max="{{lugaresDisponiveis}}" id="total" type="number" placeholder="0" (change)="calcularIngresso($event)">
+
+        <br><br>
+        <p>Total: {{ totalIngresso | currency: 'BRL' : 'symbol' }}</p>
+      </div>
+      <div class="modal-footer">
+        <small *ngIf="adicionado" class="form-text text-success">Adicionado com Sucesso!</small>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="adicionarCarrinho()">Carrinho</button>
+      </div>
+    </div>
+  </div>
+</div>
