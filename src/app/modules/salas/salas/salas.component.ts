@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Filme } from 'src/app/shared/models/filme.model';
 import { ItemCarrinho } from 'src/app/shared/models/itemCarrinho.model';
@@ -29,7 +30,11 @@ export class SalasComponent implements OnInit {
   public lugaresSala1 = 0;
   public lugaresSala2 = 0;
 
-  constructor( private movieService: MovieService, private carrinhoService: CarrinhoService ) { }
+  constructor( 
+    private router: Router, 
+    private movieService: MovieService, 
+    private carrinhoService: CarrinhoService 
+  ) { }
 
   ngOnInit(): void {
     this.carregarFilmes();
@@ -43,6 +48,10 @@ export class SalasComponent implements OnInit {
       erro => {
         console.log(erro);
       })
+  }
+
+  public openMovieDetails(idFilme: number): void {
+    this.router.navigate(['home/salas/filme', idFilme]);
   }
 
   public dialogIngresso(idFilme: number): void {

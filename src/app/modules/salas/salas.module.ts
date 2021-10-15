@@ -5,10 +5,11 @@ import { SalasRoutingModule } from './salas-routing.module';
 import { SalasComponent } from './salas/salas.component'; 
 
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FilmeComponent } from './filme/filme.component';
 
 @NgModule({
   declarations: [ 
-    SalasComponent
+    SalasComponent, FilmeComponent
   ],
   imports: [
     CommonModule,
