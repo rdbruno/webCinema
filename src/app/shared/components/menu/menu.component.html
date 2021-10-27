@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand spinner" routerLink="/home">
       <img src="../../../../assets/img/pipoca.png" alt="Pipoca" width="35" height="30" class="d-inline-block align-text-top">
@@ -20,22 +20,22 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a *ngIf="!deviceXs" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Conta</a>
-          <a *ngIf="deviceXs" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+          <a [class.disabled]="userLogged ? null: true" *ngIf="!deviceXs" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Conta</a>
+          <a [class.disabled]="userLogged ? null: true" *ngIf="deviceXs" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-badge" viewBox="0 0 16 16">
               <path d="M6.5 2a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
               <path d="M4.5 0A2.5 2.5 0 0 0 2 2.5V14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2.5A2.5 2.5 0 0 0 11.5 0h-7zM3 2.5A1.5 1.5 0 0 1 4.5 1h7A1.5 1.5 0 0 1 13 2.5v10.795a4.2 4.2 0 0 0-.776-.492C11.392 12.387 10.063 12 8 12s-3.392.387-4.224.803a4.2 4.2 0 0 0-.776.492V2.5z"/>
             </svg>
             Conta
           </a>
-          <ul class="dropdown-menu" style="border: none; background-color: whitesmoke;">
+          <ul class="dropdown-menu" style="border: none;">
             <li><a class="dropdown-item" [routerLink]="['conta/perfil']" routerLinkActive="router-link-active">Perfil</a></li>
             <li><a class="dropdown-item" [routerLink]="['conta/historico']" routerLinkActive="router-link-active">Histórico</a></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a *ngIf="!deviceXs" class="nav-link" [routerLink]="['carrinho/compra']" routerLinkActive="router-link-active">Carrinho</a>
-          <a *ngIf="deviceXs" class="nav-link" [routerLink]="['carrinho/compra']" routerLinkActive="router-link-active">
+          <a [class.disabled]="userLogged ? null: true" *ngIf="!deviceXs" class="nav-link" [routerLink]="['carrinho/compra']" routerLinkActive="router-link-active">Carrinho</a>
+          <a [class.disabled]="userLogged ? null: true" *ngIf="deviceXs" class="nav-link" [routerLink]="['carrinho/compra']" routerLinkActive="router-link-active">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
               <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
             </svg>
@@ -57,4 +57,6 @@
   </div>
 </nav>
 
-<router-outlet></router-outlet>
+<div class="padded">
+  <router-outlet></router-outlet>
+</div>

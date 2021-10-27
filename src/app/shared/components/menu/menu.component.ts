@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 })
 export class MenuComponent implements OnInit {
 
+  public userLogged = false;
   public deviceXs = false;
   mobileQuery!: MediaQueryList;
   mediaSub!: Subscription;
@@ -30,7 +31,13 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.mediaSub = this.mediaObserver.media$.subscribe((result: MediaChange) => {
       this.deviceXs = result.mqAlias === 'xs' ? true : false;
-    })
+    });
+
+    if ((!localStorage.getItem('Login'))) {
+      this.userLogged = false;
+    } else {
+      this.userLogged = true;
+    }
   }
 
   public logOut(): void {

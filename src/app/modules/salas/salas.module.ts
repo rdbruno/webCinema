@@ -9,7 +9,8 @@ import { FilmeComponent } from './filme/filme.component';
 
 @NgModule({
   declarations: [ 
-    SalasComponent, FilmeComponent
+    SalasComponent, 
+    FilmeComponent
   ],
   imports: [
     CommonModule,

@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmeComponent implements OnInit {
 
+  public userLogged = false;
   public cartaz = 'https://img3.wallspic.com/previews/2/5/2/7/5/157252/157252-movie_poster_2021-dune-godzilla_vs_kong-2021-television-x750.jpg';
 
   public lugares = [
@@ -26,6 +27,11 @@ export class FilmeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if ((!localStorage.getItem('Login'))) {
+      this.userLogged = false;
+    } else {
+      this.userLogged = true;
+    }
   }
 
 }

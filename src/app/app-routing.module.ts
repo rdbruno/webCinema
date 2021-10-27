@@ -5,7 +5,7 @@ import { AuthGuard } from './shared/guards/auth-guard';
 import { MenuComponent } from './shared/components/menu/menu.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'acesso' },
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
   {
     path: 'acesso',
     loadChildren: () => import('./modules/acesso/acesso.module').then(m => m.AcessoModule)
@@ -13,7 +13,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: MenuComponent,
-    canActivate: [ AuthGuard ],
+    //canActivate: [ AuthGuard ],
     children: [
       {
         path: '',
@@ -26,10 +26,12 @@ const routes: Routes = [
       },
       {
         path: 'conta',
+        canActivate: [ AuthGuard ],
         loadChildren: () => import('./modules/conta/conta.module').then(m => m.ContaModule)
       },
       {
         path: 'carrinho',
+        canActivate: [ AuthGuard ],
         loadChildren: () => import('./modules/carrinho/carrinho.module').then(m => m.CarrinhoModule)
       }
     ]
