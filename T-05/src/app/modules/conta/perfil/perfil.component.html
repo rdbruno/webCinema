@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header text-center">
+      Dados do Usuário
+    </div>
+    <div class="card-body">
+        <form class="row g-3">
+            <div class="col-12">
+                <label for="inputNome" class="form-label">Nome Completo</label>
+                <input type="text" class="form-control" id="inputNome" placeholder="{{ nome }}">
+              </div>
+            <div class="col-md-6">
+              <label for="inputEmail" class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="inputEmail" placeholder="{{ email }}">
+            </div>
+            <div class="col-md-6">
+              <label for="inputSenha" class="form-label">Senha</label>
+              <input type="password" class="form-control" id="inputSenha" placeholder="{{ senha }}">
+            </div>            
+            <div class="col-md-6">
+                <label for="inputDocumento" class="form-label">Documento</label>
+                <input type="text" class="form-control" id="inputDocumento" placeholder="{{ documento }}">
+              </div>
+              <div class="col-md-6">
+                <label for="inputTelefone" class="form-label">Telefone</label>
+                <input type="text" class="form-control" id="inputTelefone" placeholder="{{ telefone }}">
+              </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input *ngIf="!cliente" class="form-check-input" type="checkbox" name="checkFidelidade" id="gridCheck" (click)="atualizaFidelidade($event)">
+                <input *ngIf="cliente" class="form-check-input" type="checkbox" name="checkFidelidade" id="gridCheck" checked (click)="atualizaFidelidade($event)">
+                <label class="form-check-label" for="gridCheck">
+                  Cliente Fiel
+                </label>
+              </div>
+            </div>
+            <!--div class="col-12">
+              <button type="submit" class="btn btn-primary">Sign in</button>
+            </div-->
+        </form>
+    </div>
+</div>
