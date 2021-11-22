@@ -1,0 +1,37 @@
+<div class="container-fluid">
+    <div class="row no-gutter">
+        <!-- The image half -->
+        <div class="col-md-6 d-none d-md-flex bg-image"></div>
+
+        <!-- The content half -->
+        <div class="col-md-6 bg-light">
+            <div class="login d-flex align-items-center py-5">
+                <!-- Demo content-->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-10 col-xl-7 mx-auto">
+                            <h3 class="display-4">Acessar</h3>
+                            <p class="text-muted mb-4">WebCinema</p>
+                            <form [formGroup]="formularioLogin">
+                                <div class="form-group mb-3">
+                                    <input id="inputEmail" formControlName="email" type="email" placeholder="E-mail" required="" 
+                                           autocomplete="off" class="form-control rounded-pill border-0 shadow-sm px-4" 
+                                    >
+                                    <small *ngIf="formularioLogin.get('email')?.valid && formularioLogin.get('email')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioLogin.get('email')?.valid && formularioLogin.get('email')?.touched" class="form-text text-danger">E-mail inválido</small>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <input id="inputPassword" formControlName="senha" type="password" placeholder="Senha" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary">
+                                    <small *ngIf="formularioLogin.get('senha')?.valid && formularioLogin.get('senha')?.touched" class="form-text text-success">Ok</small>
+                                    <small *ngIf="!formularioLogin.get('senha')?.valid && formularioLogin.get('senha')?.touched" class="form-text text-danger">Senha inválida</small>
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block mb-2 rounded-pill shadow-sm" (click)="signIn()">Entrar</button>
+                                <p>Não possui uma conta? <a href="acesso/signup">Registre-se</a> </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
