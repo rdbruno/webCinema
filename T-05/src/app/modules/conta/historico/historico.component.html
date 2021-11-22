@@ -1,0 +1,45 @@
+<div class="card" style="width: 100%; border-style: none; text-align: center;">
+    <div class="card-body">
+      <h5 class="card-title">Meus Filmes</h5>
+    </div>
+</div>
+  
+<div class="row card-group">
+    <div *ngFor="let filme of filmes" class="col-12 col-md-6 col-lg-3" style="margin-top: 5px;">
+      <div class="card">
+        <img [src]="filme.UrlCartaz" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ filme.NomeFilme }}</h5>
+          <p class="card-text">Sala: {{ filme.NomeSala }}</p>
+          <p class="card-text">Horário: {{ filme.HorarioSecao | date: 'short' }}</p>
+  
+          <button class="btn btn-danger" style="margin-right: 5px;" (click)="devolverIngresso(filme.IdIngresso)">Cancelar</button>
+          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#filmeModal" (click)="dialogFilme(filme.IdFilme)">Alterar</button>
+        </div>
+      </div>
+    </div>
+</div>
+  
+<div class="modal fade" id="filmeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Dados do Filme - {{ nomeFilme }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="was-validated">
+            <p>Documento do cliente atual: {{ documentoFilme }} </p>
+            <br>
+  
+            <p>Documento do novo cliente: </p>
+            <input type="text" class="form-control rounded-pill is-invalid" id="documento" name="documento" autocomplete="off" required>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="salvarDetalhes()">Salvar</button>
+        </div>
+      </div>
+    </div>
+</div>
